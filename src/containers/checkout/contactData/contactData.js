@@ -5,7 +5,6 @@ import axios from "../../../axios-order";
 import spinner from '../../../components/UI/spinner/Spinner';
 import Input from "../../../components/UI/input/input"
 import { defaultOrderData } from "./defaultData";
-import { checkPropTypes } from 'prop-types';
 const ContactData = (props) => {
     const [orderData, setOrderData] = useState(defaultOrderData)
     const [loading, setLoading] = useState(false);
@@ -16,7 +15,7 @@ const ContactData = (props) => {
         const formData = {};
         for (const key in orderData) {
             if (orderData.hasOwnProperty(key)) {
-                formData[key] = orderData[key]
+                formData[key] = orderData[key].value;
 
             }
         }
@@ -25,6 +24,7 @@ const ContactData = (props) => {
             price: props.price.toFixed(2),
             orderData: formData
         }
+        debugger
         axios.post("/orders.json", orderDetails).then(response => {
             setLoading(false);
             goBack();

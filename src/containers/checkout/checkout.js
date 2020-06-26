@@ -17,7 +17,7 @@ const Checkout = (props) => {
         const query = new URLSearchParams(props.location.search);
         for (let param of query.entries()) {
             if (param[0] === "price") {
-                setTotalPrice(param[1])
+                setTotalPrice(Number(param[1]))
             }
             else {
                 ingredient[param[0]] = +(param[1])
